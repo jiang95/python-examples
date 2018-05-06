@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 # @author : lingjun.jlj
 # @create : 2018/5/3
+# @description:MM网图片爬取
 import os
 import re
 
