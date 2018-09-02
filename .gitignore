@@ -1,2 +1,7 @@
 # Created by .ignore support plugin (hsz.mobi)
+<<<<<<< HEAD
 .idea
+=======
+.idea
+venv
+>>>>>>> 5104aca7ea606b4efdee15aea01079dce380b41e
