@@ -5,7 +5,10 @@
 # @description:
 
 # 设置headers
+from urllib import request
+
 import requests
+from bs4 import BeautifulSoup
 from lxml import etree
 
 headers = {
@@ -28,12 +31,21 @@ class HuoBi(object):
         selector = etree.HTML(html)
         self.girl_urls += selector.xpath('//span[@class="title"]/a/@href')
 
+    # 请求网页得到BeautifulSoup对象
+    def getBeautifulSoup(self, url):
+        # 请求网页
+        req = request.Request(url, headers=self.header)
+        res = request.urlopen(req)
+        # 以html5lib格式的解析器解析得到BeautifulSoup对象
+        # 还有其他的格式如：html.parser/lxml/lxml-xml/xml/html5lib
+        soup = BeautifulSoup(res, 'lxml')
+
 
 if __name__:
     page_num = 1
-    #HuoBi_Coin = HuoBi()
-    #HuoBi_Coin.start()
+    # HuoBi_Coin = HuoBi()
+    # HuoBi_Coin.start()
     page_url = 'https://www.hbg.com/zh-cn/ycc_btc/exchange/'
-    html = requests.get(page_url).content
+    html = requests.get(page_url, headers).content
     selector = etree.HTML(html)
     print(selector.xpath('//em[@id="buy_limit_math_price"]/text()'))
